@@ -1,4 +1,5 @@
 import logging
+from urllib import request
 from fastapi import FastAPI, HTTPException, Request, Query
 from fastapi.templating import Jinja2Templates
 from pydantic_settings import BaseSettings
@@ -72,7 +73,10 @@ def startup_event():
 
 @app.get("/")
 def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html"
+)
 
 @app.get("/health")
 def health_check():

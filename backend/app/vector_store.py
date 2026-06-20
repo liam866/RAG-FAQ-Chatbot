@@ -36,7 +36,7 @@ class OllamaEmbeddingFunction(chromadb.EmbeddingFunction):
         return embeddings
 
 class VectorStore:
-    def __init__(self, path: str, ollama_base_url: str, embed_model: str, collection_name: str = "faq_kb"):
+    def __init__(self, path: str, ollama_base_url: str, embed_model: str, collection_name: str = "chroma_data"):
         self.client = chromadb.PersistentClient(path=path)
         self.embedding_function = OllamaEmbeddingFunction(ollama_base_url, embed_model)
         self.collection = self.client.get_or_create_collection(
